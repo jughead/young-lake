@@ -1,14 +1,23 @@
+<% count = 0 %>
 <% @events.each do |event| %>
+  <% count += 1 %>
   <div class="event-item">
-    <h3><%= event.title %></h3>
+    <h3><%= if can?(:show, event)
+      link_to event.title, event
+    else
+      event.title
+    end %></h3>
     <div>
-      User: <%= event.user.name %>
+      User: <%= event.user.email %>
     </div>
     <div>
       City: <%= event.city.name %>
     </div>
     <div>
-      Dates: <%= l event.user.start_at %> &mdash; <%= l event.user.finish_at %>
+      Dates: <%= l event.start_at %> &mdash; <%= l event.finish_at %>
     </div>
   </div>
+<% end %>
+<% if count == 0 %>
+<i>No events published yet</i>
 <% end %>

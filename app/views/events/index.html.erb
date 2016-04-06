@@ -1,11 +1,12 @@
 <h1>Events</h1>
+<hr/>
 
 <div class="col-sm-4">
   <%= render partial: 'filter' %>
 </div>
 
 <div class="col-sm-8">
-  <%= link_to 'New event', new_event_path, class: 'btn btn-default' %>
+  <%= link_to 'New event', new_event_path, class: 'btn btn-default' if can?(:new, Event) %>
   <div id="event-list">
     <%= render partial: 'event_list' %>
   </div>

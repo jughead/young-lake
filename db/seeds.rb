@@ -5,14 +5,14 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-City.create!([
+City.create([
   {name: 'Petrozavodsk'},
   {name: 'Moscow'},
   {name: 'Saint-Petersburg'},
   {name: 'London'}
 ])
 
-Theme.create!([
+Theme.create([
   {name: 'IT'},
   {name: 'Ruby'},
   {name: 'Ruby on Rails'},

@@ -1,29 +1,24 @@
-<p id="notice"><%= notice %></p>
+<h2><%= @event.title %>
+  <% if can?(:edit, @event) %>
+  <small><%= link_to 'Edit', edit_event_path(@event)  %></small>
+  <% end %>
+</h2>
+<div>
+  <strong>City:</strong> <%= @event.city.name %>
+</div>
+
+<div>
+  <strong>Author:</strong> <%= @event.user.email %>
+</div>
+
+<div>
+  <strong>Dates:</strong> <%= l @event.start_at %> &mdash; <%= l @event.finish_at %>
+</div>
 
 <p>
-  <strong>Title:</strong>
-  <%= @event.title %>
+  <%= simple_format(@event.description) %>
 </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @event.user %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @event.city %>
-</p>
-
-<p>
-  <strong>Start at:</strong>
-  <%= @event.start_at %>
-</p>
-
-<p>
-  <strong>Finish at:</strong>
-  <%= @event.finish_at %>
-</p>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<div class="button-group">
+  
+</div>
