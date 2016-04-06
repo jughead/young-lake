@@ -1,0 +1,14 @@
+<% @events.each do |event| %>
+  <div class="event-item">
+    <h3><%= event.title %></h3>
+    <div>
+      User: <%= event.user.name %>
+    </div>
+    <div>
+      City: <%= event.city.name %>
+    </div>
+    <div>
+      Dates: <%= l event.user.start_at %> &mdash; <%= l event.user.finish_at %>
+    </div>
+  </div>
+<% end %>

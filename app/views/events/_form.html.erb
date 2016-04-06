@@ -1,0 +1,21 @@
+<%= simple_form_for(@event) do |f| %>
+  <%= f.input :title, as: :string %>
+  <%= f.input :city_id, as: :select, collection: City.all %>
+  <%= f.input :start_at, as: :string, wrapper_html: {class: 'datetime_picker'} do %>
+    <div class="input-group date js-datetime-picker">
+      <%= f.text_field :start_at, class: 'form-control' %>
+      <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+      </span>
+    </div>
+  <% end %>
+  <%= f.input :finish_at, as: :string, wrapper_html: {class: 'datetime_picker'} do %>
+    <div class="input-group date js-datetime-picker">
+      <%= f.text_field :start_at, class: 'form-control' %>
+      <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+      </span>
+    </div>
+  <% end %>
+  <%= f.button :submit %>
+<% end %>

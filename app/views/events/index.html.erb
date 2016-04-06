@@ -1,0 +1,12 @@
+<h1>Events</h1>
+
+<div class="col-sm-4">
+  <%= render partial: 'filter' %>
+</div>
+
+<div class="col-sm-8">
+  <%= link_to 'New event', new_event_path, class: 'btn btn-default' %>
+  <div id="event-list">
+    <%= render partial: 'event_list' %>
+  </div>
+</div>
