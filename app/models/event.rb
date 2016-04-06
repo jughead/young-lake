@@ -8,4 +8,5 @@ class Event < ActiveRecord::Base
   validates :start_at, presence: true
   validates :finish_at, presence: true
   validates :description, presence: true
+  has_and_belongs_to_many :themes
 end

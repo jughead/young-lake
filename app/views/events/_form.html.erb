@@ -18,5 +18,6 @@
     </div>
   <% end %>
   <%= f.input :description %>
+  <%= f.association :themes, collection: Theme.all, input_html: {class: 'js-theme-select'} %>
   <%= f.button :submit %>
 <% end %>

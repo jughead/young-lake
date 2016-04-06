@@ -4,6 +4,10 @@
   <% end %>
 </h2>
 <div>
+  <strong>Themes:</strong> <%= @event.themes.map(&:name).join(', ') %>
+</div>
+
+<div>
   <strong>City:</strong> <%= @event.city.name %>
 </div>
 
