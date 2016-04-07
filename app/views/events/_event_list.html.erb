@@ -7,6 +7,12 @@
     else
       event.title
     end %></h3>
+    <% themes = event.themes.map(&:name).join(', ') %>
+    <% if themes.present? %>
+      <div>
+        Themes: <%= themes %>
+      </div>
+    <% end %>
     <div>
       User: <%= event.user.email %>
     </div>
