@@ -1,0 +1,8 @@
+en:
+  activerecord:
+    errors:
+      models:
+        event:
+          attributes:
+            start_at:
+              more_than_start: 'must be less than or equal to finish time'

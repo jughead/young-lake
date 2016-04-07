@@ -2,20 +2,10 @@
   <%= f.input :title, as: :string %>
   <%= f.input :city_id, as: :select, collection: City.all %>
   <%= f.input :start_at, as: :string do %>
-    <div class="input-group date js-datetime-picker">
-      <%= f.text_field :start_at, value: (f.object.start_at ? f.object.start_at.strftime('%d.%m.%y %H:%M:%S') : f.object.start_at), class: 'form-control' %>
-      <span class="input-group-addon">
-          <span class="glyphicon glyphicon-calendar"></span>
-      </span>
-    </div>
+    <%= bootstrap_datetime_picker f, :start_at %>
   <% end %>
   <%= f.input :finish_at, as: :string do %>
-    <div class="input-group date js-datetime-picker">
-      <%= f.text_field :finish_at, value: (f.object.finish_at ? f.object.finish_at.strftime('%d.%m.%y %H:%M:%S') : f.object.finish_at), class: 'form-control' %>
-      <span class="input-group-addon">
-          <span class="glyphicon glyphicon-calendar"></span>
-      </span>
-    </div>
+    <%= bootstrap_datetime_picker f, :finish_at %>
   <% end %>
   <%= f.input :description %>
   <%= f.association :themes, collection: Theme.all, input_html: {class: 'js-theme-select'} %>

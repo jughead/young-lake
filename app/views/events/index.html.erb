@@ -8,6 +8,6 @@
 <div class="col-sm-8">
   <%= link_to 'New event', new_event_path, class: 'btn btn-default' if can?(:new, Event) %>
   <div id="event-list">
-    <%= render partial: 'event_list' %>
+    <%= render partial: 'list', locals: {events: @events} %>
   </div>
 </div>

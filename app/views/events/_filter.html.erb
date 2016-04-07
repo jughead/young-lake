@@ -1,0 +1,24 @@
+<%= simple_form_for_filterrific @filterrific, defaults: {required: false}, as: :event_filter do |form| %>
+
+  <%= form.input :with_city_id, as: :select, collection: @filterrific.select_options[:with_city_id] %>
+
+  <%= form.input :with_theme_id, label: false, as: :radio_buttons do %>
+    <%= form.label :with_theme_id, required: false %>
+    <%= link_to 'reset', 'javascript:void(0)', class: 'js-reset-event-filter-theme' %>
+    <%= form.input :with_theme_id, wrapper: false, error: false, label: false, as: :radio_buttons, collection: @filterrific.select_options[:with_theme_id] %>
+  <% end %>
+
+  <%= form.fields_for :with_start_at_between, OpenStruct.new(@filterrific.with_start_at_between), defaults: {required: false} do |f| %>
+    <%= f.input :from, as: :string do %>
+      <%= bootstrap_datetime_picker(f, :from) %>
+    <% end %>
+    <%= f.input :to, as: :string do %>
+      <%= bootstrap_datetime_picker(f, :to) %>
+    <% end %>
+  <% end %>
+  <%= render_filterrific_spinner %>
+
+  <div>
+    <%= link_to('Reset filters', reset_filterrific_url) %>
+  </div>
+<% end %>

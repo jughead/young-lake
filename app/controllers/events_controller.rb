@@ -4,7 +4,15 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = @events.includes(:city, :user, :themes)
+    @filterrific = initialize_filterrific(
+      Event,
+      filter_params,
+      select_options: {
+        with_city_id: City.all,
+        with_theme_id: Theme.all,
+      }
+    ) or return
+    @events = @filterrific.find.includes(:city, :user, :themes).page(params[:page]).per_page(10)
   end
 
   # GET /events/1
@@ -62,5 +70,9 @@ class EventsController < ApplicationController
   private
     def event_params
       params.require(:event).permit(:title, :description, :city_id, :start_at, :finish_at, theme_ids: [])
+    end
+
+    def filter_params
+      params.require(:event_filter).permit(:with_city_id, :with_theme_id, with_start_at_between: [:from, :to]) if params[:event_filter]
     end
 end

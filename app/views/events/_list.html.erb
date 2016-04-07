@@ -1,5 +1,5 @@
 <% count = 0 %>
-<% @events.each do |event| %>
+<% events.each do |event| %>
   <% count += 1 %>
   <div class="event-item">
     <h3><%= if can?(:show, event)
@@ -25,5 +25,7 @@
   </div>
 <% end %>
 <% if count == 0 %>
-<i>No events published yet</i>
+<i>No events here yet</i>
 <% end %>
+
+<%= will_paginate events, renderer: BootstrapPagination::Rails %>
