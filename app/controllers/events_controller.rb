@@ -13,6 +13,25 @@ class EventsController < ApplicationController
       }
     ) or return
     @events = @filterrific.find.includes(:city, :user, :themes).page(params[:page]).per_page(10)
+    respond_to do |format|
+      format.js {}
+      format.html {}
+    end
+  end
+
+  def store_filter
+    @event_filter = current_user.event_filter
+    @event_filter.clear_filter_attributes
+    @event_filter.attributes = filter_params
+    @event_filter.save
+    respond_to do |format|
+      format.json {}
+    end
+  end
+
+  def use_stored_filter
+    @event_filter = current_user.event_filter
+    redirect_to action: :index, event_filter: @event_filter.to_filterrific_params
   end
 
   # GET /events/1

@@ -60,7 +60,4 @@ class Event < ActiveRecord::Base
     def range_validator
       errors.add(:start_at, :more_than_start) if start_at && finish_at && start_at >= finish_at
     end
-
-    
-
 end

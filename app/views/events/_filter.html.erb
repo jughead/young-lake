@@ -1,5 +1,5 @@
+<%= link_to 'Use stored filter', use_stored_filter_events_path if can?(:use_stored_filter, Event) %>
 <%= simple_form_for_filterrific @filterrific, defaults: {required: false}, as: :event_filter do |form| %>
-
   <%= form.input :with_city_id, as: :select, collection: @filterrific.select_options[:with_city_id] %>
 
   <%= form.input :with_theme_id, label: false, as: :radio_buttons do %>
@@ -20,5 +20,8 @@
 
   <div>
     <%= link_to('Reset filters', reset_filterrific_url) %>
+    <%= link_to('Store filter', 'javascript:void(0)', class: 'js-save-filter', data: {
+        url: store_filter_events_path,
+      }) if can?(:store_filter, Event) %>
   </div>
 <% end %>

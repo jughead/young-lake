@@ -10,7 +10,7 @@ class Ability
   def event_abilities
     can [:index, :show], Event
     if user.persisted?
-      can [:edit, :update, :new, :create, :delete], Event, user_id: user.id
+      can [:use_stored_filter, :store_filter, :edit, :update, :new, :create, :delete], Event, user_id: user.id
     end
   end
 end
