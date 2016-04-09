@@ -11,6 +11,40 @@ class EventFilter < ActiveRecord::Base
   alias_attribute :with_city_id, :city_id
   alias_attribute :with_theme_id, :theme_id
 
+  scope :matching_theme, ->event {
+    next unless event.theme_ids.present?
+    where(
+      arel_table[:theme_id].in(event.theme_ids).
+      or(arel_table[:theme_id].eq(nil))
+    )
+  }
+
+  scope :matching_city, ->event {
+    next unless event.city_id.present?
+    where(
+      arel_table[:city_id].eq(event.city_id).
+      or(arel_table[:city_id].eq(nil))
+    )
+  }
+
+  scope :matching_start_range, ->event {
+    next unless event.start_at.present?
+    where(
+      arel_table[:start_at_from].eq(nil).and(
+        arel_table[:start_at_to].eq(nil)
+      ).or(
+        arel_table[:start_at_from].lt(event.start_at).and(
+          arel_table[:start_at_to].gt(event.start_at))
+      )
+    )
+  }
+
+  scope :matching, ->event{
+    matching_theme(event).
+    matching_city(event).
+    matching_start_range(event)
+  }
+
   def with_start_at_between
     {from: start_at_from, to: start_at_to}
   end

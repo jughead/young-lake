@@ -53,6 +53,7 @@ class EventsController < ApplicationController
   def create
     respond_to do |format|
       if @event.save
+        NewEventNotificationJob.perform_later(@event)
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
@@ -67,6 +68,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
+        NewEventNotificationJob.perform_later(@event)
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else
@@ -87,6 +89,7 @@ class EventsController < ApplicationController
   end
 
   private
+
     def event_params
       params.require(:event).permit(:title, :description, :city_id, :start_at, :finish_at, theme_ids: [])
     end

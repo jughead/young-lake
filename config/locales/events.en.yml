@@ -6,3 +6,6 @@ en:
           attributes:
             start_at:
               more_than_start: 'must be less than or equal to finish time'
+  event_notification_mailer:
+    send_email:
+      subject: 'Event you might be interested in'

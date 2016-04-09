@@ -29,6 +29,11 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
+            <li><%= link_to 'javascript:void(0)', class: 'js-open-notifications' do %>
+                <span class="glyphicon glyphicon-bell"></span>
+                <span class="js-notification-count"></span>
+              <% end %>
+            </li>
             <li><%= link_to current_user.email, edit_user_registration_path %></li>
             <li><%= link_to t('sign_out'), destroy_user_session_path, data: {method: :delete} %></li>
           <% else %>
@@ -42,10 +47,13 @@
   </nav>
   <div id="main">
     <div class="container-fluid">
-      <div id="notice" class="alert alert-success hide"></div>
-      <div id="error" class="alert alert-danger hide"></div>
-      <%= render partial: 'flash_messages' %>
-      <%= yield %>
+      <div class="col-md-12" id="main-column">
+        <div id="notice" class="alert alert-success hide"></div>
+        <div id="error" class="alert alert-danger hide"></div>
+        <%= render partial: 'flash_messages' %>
+        <%= yield %>
+      </div>
+      <%= render partial: 'notification_bar' %>
     </div>
   </div>
   <footer class="footer">

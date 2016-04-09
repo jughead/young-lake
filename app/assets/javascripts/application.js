@@ -18,4 +18,5 @@
 //= require turbolinks
 //= require select2
 //= require filterrific/filterrific-jquery
+//= require websocket_rails/main
 //= require_tree .

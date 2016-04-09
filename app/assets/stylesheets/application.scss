@@ -36,3 +36,15 @@ body {
 .container .text-muted {
   margin: 20px 0;
 }
+
+.sidebar-nav-fixed {
+  width:20%;
+}
+
+/* Notifications 
+--------------------------------------------------- */
+.notifications {
+  .notification-unread {
+    background: green;
+  }
+}

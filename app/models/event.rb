@@ -8,8 +8,11 @@ class Event < ActiveRecord::Base
   validates :start_at, presence: true
   validates :finish_at, presence: true
   validates :description, presence: true
-  has_and_belongs_to_many :themes
   validate :range_validator
+
+  has_and_belongs_to_many :themes
+  has_many :event_notifications, dependent: :destroy
+
   scope :sorted_by, lambda { |sort_option|
     direction = (sort_option =~ /desc$/) ? 'desc' : 'asc'
     # Пока только по created_at

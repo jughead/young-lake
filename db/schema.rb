@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407222522) do
+ActiveRecord::Schema.define(version: 20160408140109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,20 @@ ActiveRecord::Schema.define(version: 20160407222522) do
   add_index "event_filters", ["start_at_to"], name: "index_event_filters_on_start_at_to", using: :btree
   add_index "event_filters", ["theme_id"], name: "index_event_filters_on_theme_id", using: :btree
   add_index "event_filters", ["user_id"], name: "index_event_filters_on_user_id", using: :btree
+
+  create_table "event_notifications", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.datetime "sent_at"
+    t.boolean  "is_read"
+    t.datetime "created_at"
+  end
+
+  add_index "event_notifications", ["created_at"], name: "index_event_notifications_on_created_at", using: :btree
+  add_index "event_notifications", ["event_id"], name: "index_event_notifications_on_event_id", using: :btree
+  add_index "event_notifications", ["sent_at"], name: "index_event_notifications_on_sent_at", using: :btree
+  add_index "event_notifications", ["sent_at"], name: "index_event_notifications_on_sent_at_null", where: "(sent_at IS NULL)", using: :btree
+  add_index "event_notifications", ["user_id"], name: "index_event_notifications_on_user_id", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.text     "title"
@@ -87,4 +101,6 @@ ActiveRecord::Schema.define(version: 20160407222522) do
   add_foreign_key "event_filters", "cities"
   add_foreign_key "event_filters", "themes"
   add_foreign_key "event_filters", "users"
+  add_foreign_key "event_notifications", "events"
+  add_foreign_key "event_notifications", "users"
 end

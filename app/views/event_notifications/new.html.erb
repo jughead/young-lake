@@ -1,0 +1,13 @@
+<div class="notification notification-<%= @event_notification.read? ? :read : :unread %>" id="event-notification-<%= @event_notification.id %>" data-id="<%= @event_notification.id %>" >
+  <div>
+   There is a new event <%= link_to @event.title, event_path(@event) %> matching your stored event filter.
+  </div>
+  <div>
+    <%= link_to 'Delete', 'javascript:void(0)', class: 'js-delete-notification' %>
+    <% if @event_notification.read? %>
+      <%= link_to 'Mark as unread', 'javascript:void(0)', class: 'js-mark-as-unread-notification' %>
+    <% else %>
+      <%= link_to 'Mark as read', 'javascript:void(0)', class: 'js-mark-as-read-notification' %>
+    <% end %>
+  </div>
+</div>
