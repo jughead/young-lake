@@ -1,4 +1,4 @@
-dispatcher = new WebSocketRails('localhost:3000/websocket');
+dispatcher = new WebSocketRails(location.hostname + (if location.port then ':' + location.port else '') + '/websocket');
 
 window.Meyvn ||= {}
 window.Meyvn.Notifications = class Notifications
