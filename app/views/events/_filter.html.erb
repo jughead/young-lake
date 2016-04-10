@@ -19,7 +19,7 @@
   <%= render_filterrific_spinner %>
 
   <div>
-    <%= link_to('Reset filters', reset_filterrific_url) %>
+    <%= link_to('Reset filters', {event_filter: { reset_filterrific: true } }) %>
     <%= link_to('Store filter', 'javascript:void(0)', class: 'js-save-filter', data: {
         url: store_filter_events_path,
       }) if can?(:store_filter, Event) %>

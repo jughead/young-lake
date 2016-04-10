@@ -95,6 +95,8 @@ class EventsController < ApplicationController
     end
 
     def filter_params
-      params.require(:event_filter).permit(:with_city_id, :with_theme_id, with_start_at_between: [:from, :to]) if params[:event_filter]
+      params.require(:event_filter).permit(
+        :reset_filterrific,
+        :with_city_id, :with_theme_id, with_start_at_between: [:from, :to]) if params[:event_filter]
     end
 end
