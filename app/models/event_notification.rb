@@ -1,7 +1,7 @@
 class EventNotification < ActiveRecord::Base
   belongs_to :user
   belongs_to :event
-  validates :user, presence: true
+  validates :user, presence: true, uniqueness: {scope: :event_id}
   validates :event, presence: true
   scope :not_sent, ->{ where(sent_at: nil) }
 
