@@ -21,7 +21,8 @@ WebsocketRails.setup do |config|
   # multiple server instances.
   # * Requires Redis.
   config.synchronize = true
-  #config.redis_options = { :host => '127.0.0.1', :port => '6379' }
+  uri = URI.parse(ENV["REDISTOGO_URL"] || 'redis://localhost:6379')
+  config.redis_options = { host: uri.host, port: uri.port, password: uri.password}
 
   # Prevent Thin from daemonizing (default is true)
   # config.daemonize = false

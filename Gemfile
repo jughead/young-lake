@@ -65,6 +65,6 @@ end
 
 group :production do
   gem 'pg'
-  gem 'puma'
+  gem 'thin'
   gem 'rails_stdout_logging'
 end
