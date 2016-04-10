@@ -20,6 +20,11 @@ class EventNotification < ActiveRecord::Base
     save
   end
 
+  def mark_as_sent!
+    self.sent_at = Time.zone.now
+    save!
+  end
+
   def sent?
     !!sent_at
   end

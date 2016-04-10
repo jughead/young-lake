@@ -1,5 +1,5 @@
 class EventNotificationMailSender < ActiveJob::Base
-  # NOTE: могут несколько запуститься,
+  # TODO: могут несколько запуститься,
   # если одна из них долго работает.
   def perform
     EventNotification.not_sent.find_each do |event_notification|
