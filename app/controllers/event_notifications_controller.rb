@@ -1,4 +1,6 @@
 class EventNotificationsController < WebsocketRails::BaseController
+  before_action :authenticate_user!
+
   def index
     # TODO: pagination
     begin
